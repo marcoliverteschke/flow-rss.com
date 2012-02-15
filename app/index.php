@@ -33,4 +33,15 @@
 		Flight::render('layout');
 	});
 	
+	Flight::route('/items/fetch/@guid', function($guid){
+		R::setup('mysql:host=localhost;dbname=flowrss', 'root', 'root');
+		$item = R::findOne('items', 'guid = ?', array($guid));
+		R::close();
+		
+		if(!empty($item))
+		{
+			Flight::render('item_details', array('item' => $item));
+		}
+	});
+	
 	Flight::start();
