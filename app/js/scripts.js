@@ -3,7 +3,9 @@ var clacked = null;
 $(document).ready(function(){
 	$('article.item').click(function(){
 		clacked = this;
-		toggle_clacked()
+		toggle_clacked();
+		console.log($(clacked).attr('data-guid'));
+		$.get('/items/read/' + $(clacked).attr('data-guid'), function(data){});
 	});
 });
 

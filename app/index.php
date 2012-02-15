@@ -26,7 +26,7 @@
 	
 	Flight::route('/items/new', function(){
 		R::setup('mysql:host=localhost;dbname=flowrss', 'root', 'root');
-		$items = R::find('items', '1 ORDER BY pubDate DESC LIMIT 50');
+		$items = R::find('items', 'time_read = 0 ORDER BY pubDate DESC LIMIT 50');
 		R::close();
 
 		Flight::render('items', array('items' => $items), 'body_content');		
@@ -42,6 +42,20 @@
 		{
 			Flight::render('item_details', array('item' => $item));
 		}
+	});
+	
+	Flight::route('/items/read/@guid', function($guid){
+		R::setup('mysql:host=localhost;dbname=flowrss', 'root', 'root');
+		$item = R::findOne('items', 'guid = ?', array($guid));
+		if($item->time_read == 0)
+		{
+			$item->time_read = time();
+		} else {
+			$item->time_read = 0;
+		}
+		error_log(print_r($item, 1));
+		R::store($item);
+		R::close();
 	});
 	
 	Flight::start();
