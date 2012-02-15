@@ -3,6 +3,7 @@
 	<head>  
 		<meta charset="utf-8">  
 		<title>Flow RSS</title>  
+		<meta name="viewport" content="width=device-width">
 		<meta name="description" content="Flow RSS">
 		<meta name="author" content="SitePoint">
 		<link rel="stylesheet" href="/css/normalize.css?v=1.0">

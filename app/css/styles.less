@@ -5,8 +5,7 @@ body {
 }
 
 .item {
-
-	padding: .75em 1.5em; /* 12px 24px*/
+	padding: 0 1.5em; /* 0 24px */
 
 	&:hover {
 		background-color: #eeeeee;
@@ -16,10 +15,12 @@ body {
 		font-size: 1.5em; /* 24px */
 		font-weight: normal;
 		margin: 0;
+		padding: .5em 0; /* 12px 0*/
 	}
 	
 	.body {
 		display: none;
+		padding-bottom: 1em;
 	}
 	
 	img {
@@ -27,4 +28,15 @@ body {
 		max-width: 100%;
 		width: auto;
 	}
+}
+
+@media screen and (min-width: 1024px) {
+	
+	.item {
+		h1, .body {
+			margin: auto;
+			width: 990px;
+		}
+	}
+	
 }
