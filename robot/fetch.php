@@ -4,7 +4,7 @@
 	require_once('SimplePie.php');
 	R::setup('mysql:host=localhost;dbname=flowrss', 'root', 'root');
 	echo "DB connection established\n";
-	$feeds = R::find('feeds');
+	$feeds = R::find('feed');
 		
 	
 	$pie = new SimplePie();
@@ -22,18 +22,18 @@
 		
 		foreach($pietems as $pietem)
 		{
-			$exists = R::findOne('items', 'guid = ?', array($pietem->get_id(true)));
+			$exists = R::findOne('item', 'guid = ?', array($pietem->get_id(true)));
 			if(count($exists) == 0)
 			{
 				$author = $pietem->get_author();
 				$item = null;
-				$item = R::dispense('items');
+				$item = R::dispense('item');
 				$item->feed_id = $feed->id;
 				if(!empty($author) && $author->get_name() != '')
 					$item->author = $author->get_name();
 	//			$item->category = 
 	//			$item->comments = 
-				$item->description = $pietem->get_description();
+				$item->description = $pietem->get_content();
 	//			$item->enclosure = 
 				$item->guid = $pietem->get_id(true);
 				$item->hash	= $pietem->get_id(true);

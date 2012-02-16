@@ -26,7 +26,12 @@
 	
 	Flight::route('/items/new', function(){
 		R::setup('mysql:host=localhost;dbname=flowrss', 'root', 'root');
-		$items = R::find('items', 'time_read = 0 ORDER BY pubDate DESC LIMIT 50');
+		$items = R::find('item', 'time_read = 0 ORDER BY pubDate DESC LIMIT 50');
+		foreach($items as $item)
+		{
+			// iterate over all items and prompt RedBean to load the parent feed
+			$item->feed;
+		}
 		R::close();
 
 		Flight::render('items', array('items' => $items), 'body_content');		
@@ -35,7 +40,7 @@
 	
 	Flight::route('/items/fetch/@guid', function($guid){
 		R::setup('mysql:host=localhost;dbname=flowrss', 'root', 'root');
-		$item = R::findOne('items', 'guid = ?', array($guid));
+		$item = R::findOne('item', 'guid = ?', array($guid));
 		R::close();
 		
 		if(!empty($item))
@@ -46,7 +51,7 @@
 	
 	Flight::route('/items/read/@guid', function($guid){
 		R::setup('mysql:host=localhost;dbname=flowrss', 'root', 'root');
-		$item = R::findOne('items', 'guid = ?', array($guid));
+		$item = R::findOne('item', 'guid = ?', array($guid));
 		if($item->time_read == 0)
 		{
 			$item->time_read = time();

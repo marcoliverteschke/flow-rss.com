@@ -4,23 +4,45 @@ body {
 	*/
 }
 
+.clear {
+	clear: both;
+	display: block;
+	float: none;
+}
+
 .item {
 	padding: 0 1.5em; /* 0 24px */
+	position: relative;
 
-	&:hover {
-		background-color: #eeeeee;
-	}
-	
 	h1 {
+		cursor: pointer;
 		font-size: 1.5em; /* 24px */
 		font-weight: normal;
 		margin: 0;
 		padding: .5em 0; /* 12px 0*/
 	}
 	
+	footer {
+		background-color: rgba(0, 0, 0, .8);
+		color: #ffffff;
+		display: none;
+		padding: .2em 1em; /* 16px */
+	}
+	
+	&:hover, &.open {
+		background-color: #eeeeee;
+		footer {
+			display: block;
+		}
+	}
+	
 	.body {
 		display: none;
 		padding-bottom: 1em;
+		
+		a {
+			color: #728296;
+		}
 	}
 	
 	img {
@@ -33,7 +55,7 @@ body {
 @media screen and (min-width: 1024px) {
 	
 	.item {
-		h1, .body {
+		h1, footer, .body {
 			margin: auto;
 			width: 990px;
 		}

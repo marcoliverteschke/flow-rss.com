@@ -38,7 +38,7 @@
 
 	function store_feed($outline)
 	{
-		$feed = R::dispense('feeds');
+		$feed = R::dispense('feed');
 		$feed->title = (string)$outline['title'];
 		$feed->link = (string)$outline['xmlUrl'];
 		print_r($feed);
