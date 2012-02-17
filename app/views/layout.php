@@ -2,7 +2,7 @@
 <html lang="en">  
 	<head>  
 		<meta charset="utf-8">  
-		<title>Flow RSS</title>  
+		<title><?php if(isset($counter) && $counter > 0) { echo $counter . ' items | '; } ?>Flow RSS</title>  
 		<meta name="viewport" content="width=device-width">
 		<meta name="description" content="Flow RSS">
 		<meta name="author" content="SitePoint">
@@ -13,6 +13,14 @@
 		<![endif]-->  
 	</head>  
 	<body>
+		<nav role="main">
+			<ul>
+				<li><a class="pictogram" href="/items/new" title="New items">{</a></li>
+				<li><a class="pictogram" href="/items/starred" title="Starred items">*</a></li>
+				<li><a class="pictogram" href="/feeds" title="Feeds">^</a></li>
+			</ul>
+		</nav>
+		<div class="clear"></div>
 		<?php echo $body_content ?>
 		<script src="/js/jquery.js"></script>  
 		<script src="/js/scripts.js"></script>  

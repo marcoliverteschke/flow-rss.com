@@ -1,7 +1,12 @@
+@font-face {
+	font-family: 'Modern Pictograms';
+	src: url('/font/modern-pictograms/modernpics.otf'); } 
+
 body {
 	/*
 		1em: 16px
 	*/
+	padding-top: 2.5em;
 }
 
 .clear {
@@ -10,7 +15,15 @@ body {
 	float: none;
 }
 
-.item {
+.pictogram {
+	font-family: 'Modern Pictograms';
+}
+
+header {
+	padding: 0 1.5em; /* 0 24px */
+}
+
+.item, .feed {
 	padding: 0 1.5em; /* 0 24px */
 	position: relative;
 
@@ -22,11 +35,26 @@ body {
 		padding: .5em 0; /* 12px 0*/
 	}
 	
+	&.read h1 {
+		color: #999999;
+	}
+
+	a {
+		color: #728296;
+	}
+	
 	footer {
 		background-color: rgba(0, 0, 0, .8);
 		color: #ffffff;
 		display: none;
 		padding: .2em 1em; /* 16px */
+
+		a {
+			color: #ffffff;
+			font-size: 1.25em; /* 20 px / 16 px */
+			padding-left: .1em;
+			text-decoration: none;
+		}
 	}
 	
 	&:hover, &.open {
@@ -39,10 +67,6 @@ body {
 	.body {
 		display: none;
 		padding-bottom: 1em;
-		
-		a {
-			color: #728296;
-		}
 	}
 	
 	img {
@@ -50,15 +74,104 @@ body {
 		max-width: 100%;
 		width: auto;
 	}
+	
+	&.starred {
+		h1 {
+			text-shadow: 0 0 .5em #e0de8f;
+		}
+		a[data-tool="star"] {
+			color: #e0de8f;
+		}
+	}
+}
+
+
+[role="main"] {
+	left: 0;
+	position: fixed;
+	top: 0;
+	z-index: 10;
+	width: 100%;
+
+	ul, li {
+		margin: 0;
+		padding: 0;
+	}
+		
+	li {
+		float: left;
+		width: 33%;
+		
+		&:last-of-type {
+			width: 34%;
+		}
+	}
+		
+	a {
+		background-color: rgba(0, 0, 0, .8);
+		color: #ffffff;
+		display: block;
+		font-size: 2em; /* 32px */
+		padding: .2em 0;
+		text-decoration: none;
+		text-align: center;
+	}
+}
+
+
+@media screen and (min-width: 768px) {
+	body {
+		padding-top: 0;
+	}
+	
+	[role="main"] {
+		top: 5em;
+		width: auto;
+		
+		ul, li {
+			margin: 0;
+			padding: 0;
+		}
+		
+		li {
+			float: none;
+			
+			&, &:last-of-type {
+				width: auto;
+			}
+		}
+		
+		a {
+			margin-bottom: 1px;
+			padding: .2em .4em;			
+		}
+		
+		li:first-of-type a {
+			-webkit-border-top-right-radius: .5em;
+			-moz-border-radius-topright: .5em;
+			border-top-right-radius: .5em;
+		}
+		
+		li:last-of-type a {
+			-webkit-border-bottom-right-radius: .5em;
+			-moz-border-radius-bottomright: .5em;
+			border-bottom-right-radius: .5em;
+		}
+	}
 }
 
 @media screen and (min-width: 1024px) {
 	
-	.item {
+	.item, .feed {
 		h1, footer, .body {
-			margin: auto;
+			margin: 0 auto;
 			width: 990px;
 		}
+	}
+	
+	header h1 {
+		margin: 1em auto;
+		width: 990px;
 	}
 	
 }
