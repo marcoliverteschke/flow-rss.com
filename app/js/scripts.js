@@ -3,13 +3,11 @@ var clacked = null;
 $(document).ready(function(){
 	$('article.item h1').click(function(){
 		clacked = $(this).parent('.item');
-
+		toggle_clacked();
 		if(!$(clacked).hasClass('read'))
 		{
 			$(clacked).addClass('read');
 		}
-
-		toggle_clacked();
 	});
 	
 	$('a[data-tool="star"]').click(function(){
@@ -33,7 +31,8 @@ function toggle_clacked()
 	
 	if($(clacked).find('.body:visible').length == 0)
 	{
-		$.get('/items/read/' + $(clacked).attr('data-guid'), function(data){});
+		if(!$(clacked).hasClass('read'))
+			$.get('/items/read/' + $(clacked).attr('data-guid'), function(data){});
 		$.get('/items/fetch/' + $(clacked).attr('data-guid'), function(data){
 			$(clacked).addClass('open');
 			$(clacked).find('h1').after(data);

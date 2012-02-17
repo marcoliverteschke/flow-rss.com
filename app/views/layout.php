@@ -6,8 +6,7 @@
 		<meta name="viewport" content="width=device-width">
 		<meta name="description" content="Flow RSS">
 		<meta name="author" content="SitePoint">
-		<link rel="stylesheet" href="/css/normalize.css?v=1.0">
-		<link rel="stylesheet" href="/css/styles.css?v=1.0">
+		<link rel="stylesheet" href="/min/?f=/css/normalize.css,/css/styles.css">
 		<!--[if lt IE 9]>  
 			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->  
@@ -22,7 +21,6 @@
 		</nav>
 		<div class="clear"></div>
 		<?php echo $body_content ?>
-		<script src="/js/jquery.js"></script>  
-		<script src="/js/scripts.js"></script>  
+		<script src="/min/?f=/js/jquery.js,/js/scripts.js"></script>
 	</body>  
 </html>  
