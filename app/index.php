@@ -4,7 +4,7 @@
 	require('../lib/rb.php');
 	require('../lib/lessc.inc.php');
 
-/*	Flight::before('start', function(&$params, &$output){
+	Flight::before('start', function(&$params, &$output){
 		lessc::ccompile('css/styles.less', 'css/styles.css');
 	});
 
@@ -16,7 +16,7 @@
 		items/new => unread items chronological
 		items/marked => marked items
 	*/
-/*	Flight::route('/', function(){
+	Flight::route('/', function(){
 	    Flight::redirect('/items');
 	});
 
@@ -25,7 +25,12 @@
 	});
 	
 	Flight::route('/items/new', function(){
-		R::setup('mysql:host=localhost;dbname=flowrss', 'root', 'root');
+		if($_SERVER['SERVER_ADDR'] == '87.106.88.22')
+		{
+			R::setup('mysql:host=localhost;dbname=flowrss', 'flowrss', 'oGhaiW0h');
+		} else {
+			R::setup('mysql:host=localhost;dbname=flowrss', 'root', 'root');
+		}
 		$items = R::find('item', 'time_read = 0 ORDER BY pubDate DESC LIMIT 50');
 		foreach($items as $item)
 		{
@@ -63,6 +68,6 @@
 		R::close();
 	});
 	
-	Flight::start();*/
+	Flight::start();
 	
 ?>

@@ -1,7 +1,13 @@
 <?php
 
 	require_once('../lib/rb.php');
-	R::setup('mysql:host=localhost;dbname=flowrss', 'root', 'root');
+	
+	var_dump($argv);
+	
+	if(isset($argv[1]) && $argv[1] == 'production')
+		R::setup('mysql:host=localhost;dbname=flowrss', 'root', 'root');
+	else
+		R::setup('mysql:host=localhost;dbname=flowrss', 'flowrss', 'oGhaiW0h');
 	
 	$handle = @fopen('./subscriptions.xml', 'r');
 	if($handle)

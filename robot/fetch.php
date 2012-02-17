@@ -2,7 +2,12 @@
 	
 	require_once('../lib/rb.php');
 	require_once('SimplePie.php');
-	R::setup('mysql:host=localhost;dbname=flowrss', 'root', 'root');
+
+	if(isset($argv[1]) && $argv[1] == 'production')
+		R::setup('mysql:host=localhost;dbname=flowrss', 'flowrss', 'oGhaiW0h');
+	else
+		R::setup('mysql:host=localhost;dbname=flowrss', 'root', 'root');
+
 	echo "DB connection established\n";
 	$feeds = R::find('feed');
 		
