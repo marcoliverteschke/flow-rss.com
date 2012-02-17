@@ -4,7 +4,7 @@
 	require('../lib/rb.php');
 	require('../lib/lessc.inc.php');
 
-	Flight::before('start', function(&$params, &$output){
+/*	Flight::before('start', function(&$params, &$output){
 		lessc::ccompile('css/styles.less', 'css/styles.css');
 	});
 
@@ -16,7 +16,7 @@
 		items/new => unread items chronological
 		items/marked => marked items
 	*/
-	Flight::route('/', function(){
+/*	Flight::route('/', function(){
 	    Flight::redirect('/items');
 	});
 
@@ -63,4 +63,6 @@
 		R::close();
 	});
 	
-	Flight::start();
+	Flight::start();*/
+	
+?>
