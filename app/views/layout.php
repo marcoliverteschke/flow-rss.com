@@ -9,7 +9,10 @@
 		<link rel="stylesheet" href="/min/?f=/css/normalize.css,/css/styles.css">
 		<!--[if lt IE 9]>  
 			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->  
+		<![endif]-->
+		
+		<link rel="icon" href="/favicon.png" type="image/png" />
+		<link rel="apple-touch-icon" type="image/x-icon" href="/apple-touch-icon.png"/>
 	</head>  
 	<body>
 		<nav role="main">
