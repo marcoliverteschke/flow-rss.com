@@ -43,6 +43,14 @@
 		Flight::render('items', array('feed' => $feed, 'items' => $items), 'body_content');
 		Flight::render('layout');
 	});
+	
+	Flight::route('/feeds/delete', function(){
+		if(Flight::request()->method == 'POST')
+		{
+			error_log(print_r(Flight::request()->data, 1));
+//			Flight::redirect('/feeds');
+		}
+	});
 
 	Flight::route('/items', function(){
 	    Flight::redirect('/items/new');
