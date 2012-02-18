@@ -49,6 +49,14 @@
 		}
 	});
 
+	Flight::route('/feeds/unsubscribe', function(){
+		if(Flight::request()->method == 'POST')
+		{
+			R::exec('DELETE FROM item WHERE feed_id = ?', array(Flight::request()->data['fid']));
+			R::exec('DELETE FROM feed WHERE id = ?', array(Flight::request()->data['fid']));
+		}
+	});
+
 	Flight::route('/feeds/@id', function($id){
 		$feed = R::findOne('feed', 'id = ?', array($id));
 		$items = R::find('item', 'feed_id = ? ORDER BY pubDate DESC', array($id));
@@ -61,14 +69,6 @@
 		}
 	});
 	
-	Flight::route('/feeds/delete', function(){
-		if(Flight::request()->method == 'POST')
-		{
-			error_log(print_r(Flight::request()->data, 1));
-//			Flight::redirect('/feeds');
-		}
-	});
-
 	Flight::route('/items', function(){
 	    Flight::redirect('/items/new');
 	});

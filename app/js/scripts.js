@@ -56,6 +56,12 @@ $(document).ready(function(){
 		}
 		$.get('/items/star/' + $(this).parents('.item').attr('data-guid'), function(data){});
 	});
+	
+	$('a[data-tool="unsubscribe"]').live('click', function(){
+		$.post('/feeds/unsubscribe', {'fid' : $(this).attr('data-fid')}, function(){
+			window.location = '/feeds';
+		});
+	});
 });
 
 

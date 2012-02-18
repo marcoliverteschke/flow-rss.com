@@ -2,7 +2,7 @@
 
 	if(isset($feed))
 	{
-		echo '<header><h1>Items for feed „' . $feed->title . '”</h1></header>';
+		echo '<header><h1>Items for „' . $feed->title . '” <a class="pictogram" data-tool="unsubscribe" data-fid="' . $feed->id . '" href="javascript:void(0);">I</a></h1></header>';
 	}
 
 	foreach($items as $item)
@@ -17,8 +17,8 @@
 				echo '<a class="pictogram" href="' . $item->link . '" target="_blank" title="Open original article">o</a>';
 				echo ' | ';
 				echo '<a class="pictogram" data-tool="star" href="javascript:void(0);" title="Star item">*</a>';
-//				echo ' | ';
-//				echo '<a class="pictogram" data-tool="instapaper" href="javascript:void(0);" title="Send article to Instapaper">a</a>';
+				echo ' | ';
+				echo '<a class="pictogram" data-tool="instapaper" href="http://www.instapaper.com/edit?url=' . urlencode($item->link) . '&title=' . urlencode($item->title) . '" title="Send article to Instapaper" target="_blank">a</a>';
 			echo '</footer>';
 		echo '</article>';
 	}
