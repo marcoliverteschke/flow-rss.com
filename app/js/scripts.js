@@ -2,6 +2,13 @@ var clacked = null;
 
 $(document).ready(function(){
 	
+	$('.js-pjax').pjax('#content', {
+		timeout: null,
+		error: function(xhr, err){
+			$('.error').text('Something went wrong: ' + err)
+		}
+	});
+	
 	$('body').keypress(function(e){
 		if($('.item').length > 0)
 		{
@@ -36,11 +43,11 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('article.item h1').click(function(){
+	$('article.item h1').live('click', function(){
 		clack_title(this);
 	});
 	
-	$('a[data-tool="star"]').click(function(){
+	$('a[data-tool="star"]').live('click', function(){
 		if($(this).parents('.item').hasClass('starred'))
 		{
 			$(this).parents('.item').removeClass('starred');

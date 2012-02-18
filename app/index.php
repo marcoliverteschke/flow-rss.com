@@ -7,6 +7,13 @@
 	Flight::before('start', function(&$params, &$output){
 		lessc::ccompile('css/styles.less', 'css/styles.css');
 		
+		Flight::set('ajax', false);
+		$request = Flight::request();
+		if(isset($request->query['_pjax']) && $request->query['_pjax'])
+		{
+			Flight::set('ajax', true);
+		}
+		
 		if($_SERVER['SERVER_ADDR'] == '87.106.88.22')
 		{
 			R::setup('mysql:host=localhost;dbname=flowrss', 'flowrss', 'oGhaiW0h');
@@ -33,15 +40,25 @@
 	
 	Flight::route('/feeds', function(){
 		$feeds = R::find('feed', '1 ORDER BY title ASC');
-		Flight::render('feeds', array('feeds' => $feeds), 'body_content');		
-		Flight::render('layout');
+		Flight::render('feeds', array('feeds' => $feeds), 'body_content');
+		if(Flight::get('ajax') == true)
+		{
+			Flight::render('blank');
+		} else {
+			Flight::render('layout');
+		}
 	});
 
 	Flight::route('/feeds/@id', function($id){
 		$feed = R::findOne('feed', 'id = ?', array($id));
 		$items = R::find('item', 'feed_id = ? ORDER BY pubDate DESC', array($id));
 		Flight::render('items', array('feed' => $feed, 'items' => $items), 'body_content');
-		Flight::render('layout');
+		if(Flight::get('ajax') == true)
+		{
+			Flight::render('blank');
+		} else {
+			Flight::render('layout');
+		}
 	});
 	
 	Flight::route('/feeds/delete', function(){
@@ -64,7 +81,12 @@
 			$item->feed;
 		}
 		Flight::render('items', array('items' => $items), 'body_content');		
-		Flight::render('layout', array('counter' => count($items)));
+		if(Flight::get('ajax') == true)
+		{
+			Flight::render('blank');
+		} else {
+			Flight::render('layout', array('counter' => count($items)));
+		}
 	});
 	
 	Flight::route('/items/starred', function(){
@@ -75,7 +97,12 @@
 			$item->feed;
 		}
 		Flight::render('items', array('items' => $items), 'body_content');		
-		Flight::render('layout');
+		if(Flight::get('ajax') == true)
+		{
+			Flight::render('blank');
+		} else {
+			Flight::render('layout');
+		}
 	});
 	
 	Flight::route('/items/fetch/@guid', function($guid){

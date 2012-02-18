@@ -17,13 +17,13 @@
 	<body>
 		<nav role="main">
 			<ul>
-				<li><a class="pictogram" href="/items/new" title="New items">{</a></li>
-				<li><a class="pictogram" href="/items/starred" title="Starred items">*</a></li>
-				<li><a class="pictogram" href="/feeds" title="Feeds">^</a></li>
+				<li><a class="pictogram js-pjax" href="/items/new" title="New items">{</a></li>
+				<li><a class="pictogram js-pjax" href="/items/starred" title="Starred items">*</a></li>
+				<li><a class="pictogram js-pjax" href="/feeds" title="Feeds">^</a></li>
 			</ul>
 		</nav>
 		<div class="clear"></div>
-		<?php echo $body_content ?>
-		<script src="/min/?f=/js/jquery.js,/js/scripts.js"></script>
+		<div id="content"><?php echo $body_content ?></div>
+		<script src="/min/?f=/js/jquery.js,/js/jquery.pjax.js,/js/scripts.js"></script>
 	</body>  
 </html>  
