@@ -1,13 +1,43 @@
 var clacked = null;
 
 $(document).ready(function(){
-	$('article.item h1').click(function(){
-		clacked = $(this).parent('.item');
-		toggle_clacked();
-		if(!$(clacked).hasClass('read'))
+	
+	$('body').keypress(function(e){
+		if($('.item').length > 0)
 		{
-			$(clacked).addClass('read');
+			if(e.keyCode == 106)
+			{
+				if(clacked == null)
+				{
+					clack($('.item')[0]);
+				} else {
+					var next_index = $('.item').index($('.item.open')) + 1;
+					if(next_index < $('.item').length)
+					{
+						clack($('.item')[next_index]);
+					}
+				}
+			}
+			if(e.keyCode == 107)
+			{
+				if(clacked != null)
+				{
+					var previous_index = $('.item').index($('.item.open')) - 1;
+					if(previous_index >= 0)
+					{
+						clack($('.item')[previous_index]);
+					}
+				}
+			}
+			if(e.keyCode == 65)
+			{
+				read_all_visible_items();
+			}
 		}
+	});
+	
+	$('article.item h1').click(function(){
+		clack_title(this);
 	});
 	
 	$('a[data-tool="star"]').click(function(){
@@ -20,6 +50,23 @@ $(document).ready(function(){
 		$.get('/items/star/' + $(this).parents('.item').attr('data-guid'), function(data){});
 	});
 });
+
+
+function clack_title(title)
+{
+	clack($(title).parent('.item'))
+}
+
+
+function clack(item)
+{
+	clacked = item;
+	toggle_clacked();
+	if(!$(clacked).hasClass('read'))
+	{
+		$(clacked).addClass('read');
+	}
+}
 
 
 function toggle_clacked()
@@ -42,6 +89,19 @@ function toggle_clacked()
 		$(clacked).find('.body').slideUp(function(){
 			$(clacked).removeClass('open');
 			$(this).remove();
+			clacked = null;
 		});
 	}
+}
+
+
+function read_all_visible_items()
+{
+	$('.item').each(function(i, e){
+		if(!$(e).hasClass('read'))
+		{
+			$(e).addClass('read');
+			$.get('/items/read/' + $(e).attr('data-guid'), function(data){});
+		}
+	});
 }
