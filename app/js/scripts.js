@@ -9,7 +9,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('body').keypress(function(e){
+	$(document).keypress(function(e){
 		if($('.item').length > 0)
 		{
 			if(e.keyCode == 106)
