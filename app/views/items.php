@@ -22,3 +22,6 @@
 			echo '</footer>';
 		echo '</article>';
 	}
+	
+	if(count($items) == 0)
+		echo '<section class="backdrop space"><h1>A vast emptiness spreads before you…</h1></section>';
