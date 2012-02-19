@@ -24,7 +24,6 @@
 		</nav>
 		<div class="clear"></div>
 		<div id="content"><?php echo $body_content ?></div>
-<!--		<script src="/min/?f=/js/jquery.js,/js/jquery.pjax.js,/js/scripts.js"></script>-->
 		<script type="text/javascript">
 			// Add a script element as a child of the body
 			function downloadJSAtOnload() {
