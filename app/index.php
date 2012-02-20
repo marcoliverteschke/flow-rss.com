@@ -81,11 +81,12 @@
 			$item->feed;
 		}
 		Flight::render('items', array('items' => $items), 'body_content');		
+		$title_prefix = (count($items) > 0 ? count($items) . ' items | ' : '');
 		if(Flight::get('ajax') == true)
 		{
-			Flight::render('blank');
+			Flight::render('blank', array('title_prefix' => $title_prefix));
 		} else {
-			Flight::render('layout', array('counter' => count($items)));
+			Flight::render('layout', array('title_prefix' => $title_prefix));
 		}
 	});
 	

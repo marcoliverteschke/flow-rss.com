@@ -2,7 +2,7 @@
 <html lang="en">  
 	<head>  
 		<meta charset="utf-8">  
-		<title><?php if(isset($counter) && $counter > 0) { echo $counter . ' items | '; } ?>Flow RSS</title>  
+		<title><?php if(isset($title_prefix)) { echo $title_prefix; } ?>Flow RSS</title>  
 		<meta name="viewport" content="width=device-width">
 		<meta name="description" content="Flow RSS">
 		<meta name="author" content="SitePoint">
