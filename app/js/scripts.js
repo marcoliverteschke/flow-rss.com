@@ -100,7 +100,14 @@ function toggle_clacked()
 		$.get('/items/fetch/' + $(clacked).attr('data-guid'), function(data){
 			$(clacked).addClass('open');
 			$(clacked).find('h1').after(data);
-			$(clacked).find('.body').slideDown();
+			$(clacked).find('.body').slideDown(function(){
+				if($('[role="main"]').offset().top == 0)
+				{
+					$('html,body').scrollTop($(clacked).offset().top - $('[role="main"]').outerHeight());
+				} else {
+					$('html,body').scrollTop($(clacked).offset().top);
+				}
+			});
 		});
 	} else {
 		$(clacked).find('.body').slideUp(function(){
