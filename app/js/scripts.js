@@ -2,6 +2,10 @@ var clacked = null;
 
 $(document).ready(function(){
 	
+	$('.body a').live('mouseover', function(e){
+		$(this).attr('target', '_blank');
+	});
+	
 	$('.js-pjax').pjax('#content', {
 		timeout: null,
 		error: function(xhr, err){
