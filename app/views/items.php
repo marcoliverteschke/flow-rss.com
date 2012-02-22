@@ -12,7 +12,7 @@
 			echo '<footer>';
 				echo date('d.m.Y H:i', $item->pubDate);
 				echo ' | ';
-				echo '<a href="/feeds/' . $item->feed->id . '">' . $item->feed->title . '</a>';
+				echo '<a class="js-pjax" href="/feeds/' . $item->feed->id . '">' . $item->feed->title . '</a>';
 				echo ' | ';
 				echo '<a class="pictogram" href="' . $item->link . '" target="_blank" title="Open original article">o</a>';
 				echo ' | ';

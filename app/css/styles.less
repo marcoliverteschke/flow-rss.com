@@ -103,11 +103,7 @@ header {
 		
 	li {
 		float: left;
-		width: 33%;
-		
-		&:last-of-type {
-			width: 34%;
-		}
+		width: 25%;
 	}
 		
 	a {
@@ -138,12 +134,12 @@ header {
 
 	h1 {
 		color: #dddddd;
-		font-size: 3em; /* 48 px */
+		font-size: 2em; /* 32 px */
 		font-variant: small-caps;
 		font-weight: normal;
 		margin: 0 auto;
 		text-shadow: -1px -1px 2px #bbbbbb;
-		width: 50%;
+		width: 60%;
 	}
 }
 
@@ -168,6 +164,10 @@ header {
 			&, &:last-of-type {
 				width: auto;
 			}
+			
+			&.mobile-only {
+				display: none;
+			}
 		}
 		
 		a {
@@ -175,7 +175,7 @@ header {
 			padding: .2em .4em;			
 		}
 		
-		li:first-of-type a {
+		li:nth-of-type(2) a {
 			-webkit-border-top-right-radius: .5em;
 			-moz-border-radius-topright: .5em;
 			border-top-right-radius: .5em;
@@ -208,6 +208,12 @@ header {
 			footer {
 				display: block;
 			}
+		}
+	}
+	
+	.backdrop {
+		h1 {
+			font-size: 3em; /* 48 px */
 		}
 	}
 }
