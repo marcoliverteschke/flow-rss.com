@@ -27,7 +27,8 @@
 		
 		foreach($pietems as $pietem)
 		{
-			$exists = R::findOne('item', 'guid = ?', array($pietem->get_id(true)));
+			$hash = md5($pietem->get_title() . '|||flow-rss.com|||' . $pietem->get_permalink());
+			$exists = R::findOne('item', 'guid = ? OR hash = ?', array($pietem->get_id(true), $hash));
 			if(count($exists) == 0)
 			{
 				$author = $pietem->get_author();
@@ -41,7 +42,7 @@
 				$item->description = $pietem->get_content();
 	//			$item->enclosure = 
 				$item->guid = $pietem->get_id(true);
-				$item->hash	= $pietem->get_id(true);
+				$item->hash	= $hash;
 				$item->link = $pietem->get_permalink();
 				$item->pubDate = $pietem->get_date('U');
 				if(empty($item->pubDate))
