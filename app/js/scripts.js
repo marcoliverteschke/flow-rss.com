@@ -87,11 +87,11 @@ function clack_title(title)
 
 function clack(item)
 {
-	clacked = item;
+	clacked = $(item);
 	toggle_clacked();
-	if(!$(clacked).hasClass('read'))
+	if(!clacked.hasClass('read'))
 	{
-		$(clacked).addClass('read');
+		clacked.addClass('read');
 	}
 }
 
