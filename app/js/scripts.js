@@ -44,6 +44,10 @@ $(document).ready(function(){
 			{
 				read_all_visible_items();
 			}
+			if(e.keyCode == 115 && clacked != null)
+			{
+				star_item(clacked);
+			}
 		}
 	});
 	
@@ -52,13 +56,7 @@ $(document).ready(function(){
 	});
 	
 	$('a[data-tool="star"]').live('click', function(){
-		if($(this).parents('.item').hasClass('starred'))
-		{
-			$(this).parents('.item').removeClass('starred');
-		} else {
-			$(this).parents('.item').addClass('starred');
-		}
-		$.get('/items/star/' + $(this).parents('.item').attr('data-guid'), function(data){});
+		star_item($(this).parents('.item'));
 	});
 	
 	$('a[data-tool="unsubscribe"]').live('click', function(){
@@ -67,6 +65,18 @@ $(document).ready(function(){
 		});
 	});
 });
+
+
+function star_item(item)
+{
+	if(item.hasClass('starred'))
+	{
+		$(item).removeClass('starred');
+	} else {
+		$(item).addClass('starred');
+	}
+	$.get('/items/star/' + $(item).attr('data-guid'), function(data){});
+}
 
 
 function clack_title(title)
