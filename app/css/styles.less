@@ -145,6 +145,15 @@ header {
 
 
 @media screen and (min-width: 768px) {
+	.backdrop {
+		h1 {
+			font-size: 3em; /* 48 px */
+		}
+	}
+}
+
+@media screen and (min-width: 1024px) {
+
 	body {
 		padding-top: 0;
 	}
@@ -190,6 +199,9 @@ header {
 
 	header {
 		h1 {
+			margin: 1em auto;
+			width: 990px;	
+
 			a {
 				display: none;
 			}
@@ -209,26 +221,9 @@ header {
 				display: block;
 			}
 		}
-	}
-	
-	.backdrop {
-		h1 {
-			font-size: 3em; /* 48 px */
-		}
-	}
-}
-
-@media screen and (min-width: 1024px) {
-	
-	.item, .feed {
 		h1, footer, .body {
 			margin: 0 auto;
 			width: 990px;
 		}
-	}
-	
-	header h1 {
-		margin: 1em auto;
-		width: 990px;	
 	}
 }
