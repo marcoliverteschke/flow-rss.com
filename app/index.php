@@ -20,6 +20,7 @@
 		} else {
 			R::setup('mysql:host=localhost;dbname=flowrss', 'root', 'root');
 		}
+		R::freeze(true);
 	});
 
 	Flight::after('start', function(&$params, &$output){
