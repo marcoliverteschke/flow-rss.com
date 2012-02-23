@@ -75,14 +75,15 @@
 	});
 	
 	Flight::route('/items/new', function(){
-		$items = R::find('item', 'time_read = 0 ORDER BY pubDate ASC');
+		$items = R::find('item', 'time_read = 0 ORDER BY pubDate ASC LIMIT 50');
+		$items_count = R::getCell('SELECT count(*) FROM item WHERE time_read = 0');
 		foreach($items as $item)
 		{
 			// iterate over all items and prompt RedBean to load the parent feed
 			$item->feed;
 		}
-		Flight::render('items', array('items' => $items), 'body_content');		
-		$title_prefix = (count($items) > 0 ? count($items) . ' items | ' : '');
+		Flight::render('items', array('items' => $items, 'theres_more' => ($items_count > count($items))), 'body_content');		
+		$title_prefix = ($items_count > 0 ? $items_count . ' items | ' : '');
 		if(Flight::get('ajax') == true)
 		{
 			Flight::render('blank', array('title_prefix' => $title_prefix));
