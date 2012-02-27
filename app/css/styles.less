@@ -145,6 +145,56 @@ header {
 
 
 @media screen and (min-width: 768px) {
+
+	body {
+		padding-top: 0;
+	}
+
+	[role="main"] {
+		background-color: rgba(0, 0, 0, .8);
+		height: 100%;
+		width: auto;
+		
+		ul, li {
+			margin: 0;
+			padding: 0;
+		}
+		
+		ul {
+			position: relative;
+			top: 2em;
+		}
+		
+		li {
+			float: none;
+			
+			&, &:last-of-type {
+				width: auto;
+			}
+		}
+		
+		a {
+			background: none;
+			margin-bottom: 1px;
+			padding: .2em .4em;			
+		}
+	}
+	
+	header {
+		h1 {
+			margin: 1em auto;
+			width: 650px;	
+		}
+	}
+	
+	.item, .feed {
+		h1, footer, .body {
+			margin: 0 auto;
+			width: 650px;
+		}
+	}
+	
+
 	.backdrop {
 		h1 {
 			font-size: 3em; /* 48 px */
@@ -154,36 +204,23 @@ header {
 
 @media screen and (min-width: 1024px) {
 
-	body {
-		padding-top: 0;
-	}
-	
 	[role="main"] {
-		top: 5em;
-		width: auto;
-		
-		ul, li {
-			margin: 0;
-			padding: 0;
+		background: none;
+
+		a {
+			background: rgba(0, 0, 0, .8);
+		}
+
+		ul {
+			top: 5em;
 		}
 		
 		li {
-			float: none;
-			
-			&, &:last-of-type {
-				width: auto;
-			}
-			
 			&.mobile-only {
 				display: none;
 			}
 		}
-		
-		a {
-			margin-bottom: 1px;
-			padding: .2em .4em;			
-		}
-		
+
 		li:nth-of-type(2) a {
 			-webkit-border-top-right-radius: .5em;
 			-moz-border-radius-topright: .5em;
@@ -199,8 +236,7 @@ header {
 
 	header {
 		h1 {
-			margin: 1em auto;
-			width: 990px;	
+			width: 900px;	
 
 			a {
 				display: none;
@@ -222,8 +258,7 @@ header {
 			}
 		}
 		h1, footer, .body {
-			margin: 0 auto;
-			width: 990px;
+			width: 900px;
 		}
 	}
 }
