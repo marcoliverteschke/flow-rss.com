@@ -140,8 +140,9 @@ function read_all_visible_items()
 	$('.item').each(function(i, e){
 		if(!$(e).hasClass('read'))
 		{
-			$(e).addClass('read');
-			$.get('/items/read/' + $(e).attr('data-guid'), function(data){});
+			$.get('/items/read/' + $(e).attr('data-guid'), function(data){
+				$(e).addClass('read');
+			});
 		}
 	});
 }
