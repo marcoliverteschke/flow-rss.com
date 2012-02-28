@@ -25,6 +25,7 @@
 		</nav>
 		<div class="clear"></div>
 		<div id="content"><?php echo $body_content ?></div>
+		<div id="loading"></div>
 		<script type="text/javascript">
 			// Add a script element as a child of the body
 			function downloadJSAtOnload() {

@@ -8,8 +8,14 @@ $(document).ready(function(){
 	
 	$('.js-pjax').pjax('#content', {
 		timeout: null,
+		beforeSend: function(jqXHR, settings){
+			toggle_loading();
+		},
 		error: function(xhr, err){
 			$('.error').text('Something went wrong: ' + err)
+		},
+		success: function(data, textStatus, jqXHR) {
+			toggle_loading();
 		}
 	});
 	
@@ -138,4 +144,10 @@ function read_all_visible_items()
 			$.get('/items/read/' + $(e).attr('data-guid'), function(data){});
 		}
 	});
+}
+
+
+function toggle_loading()
+{
+	$('#loading').toggle();
 }
