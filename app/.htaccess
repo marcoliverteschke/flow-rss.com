@@ -6,4 +6,4 @@ RewriteRule ^(.*)$ index.php [QSA,L]
 AuthType Basic
 AuthName "Flow RSS"
 AuthUserFile /var/www/flow-rss.com/home/htdocs/.htpasswd
-#Require valid-user
+Require valid-user
