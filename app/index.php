@@ -58,6 +58,21 @@
 		}
 	});
 
+	Flight::route('/feeds/subscribe', function(){
+//		if(Flight::request()->method == 'POST')
+//		{
+//			R::exec('DELETE FROM item WHERE feed_id = ?', array(Flight::request()->data['fid']));
+//			R::exec('DELETE FROM feed WHERE id = ?', array(Flight::request()->data['fid']));
+//		}
+		Flight::render('add_feed', array(), 'body_content');
+		if(Flight::get('ajax') == true)
+		{
+			Flight::render('blank');
+		} else {
+			Flight::render('layout');
+		}
+	});
+
 	Flight::route('/feeds/@id', function($id){
 		$feed = R::findOne('feed', 'id = ?', array($id));
 		$items = R::find('item', 'feed_id = ? ORDER BY pubDate DESC', array($id));

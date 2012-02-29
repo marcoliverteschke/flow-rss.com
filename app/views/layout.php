@@ -21,6 +21,7 @@
 				<li><a class="pictogram js-pjax" href="/items/new" title="New items">{</a></li>
 				<li><a class="pictogram js-pjax" href="/items/starred" title="Starred items">*</a></li>
 				<li><a class="pictogram js-pjax" href="/feeds" title="Feeds">^</a></li>
+<!--				<li><a class="pictogram js-pjax-modal" href="/feeds/subscribe" title="Add feed">+</a></li>-->
 			</ul>
 		</nav>
 		<div class="clear"></div>
