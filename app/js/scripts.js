@@ -1,4 +1,5 @@
 var clacked = null;
+var items_to_read = null
 
 $(document).ready(function(){
 	
@@ -137,13 +138,12 @@ function toggle_clacked()
 
 function read_all_visible_items()
 {
-	$('.item').each(function(i, e){
-		if(!$(e).hasClass('read'))
-		{
-			$.get('/items/read/' + $(e).attr('data-guid'), function(data){
-				$(e).addClass('read');
-			});
-		}
+	items_to_read = new Array();
+	$('.item:not(.read)').each(function(i, e){
+		items_to_read[i] = $(e).attr('data-guid');
+	});
+	$.post('/items/read/', {'items_to_read' : items_to_read}, function(data){
+		$('.item:not(.read)').addClass('read');
 	});
 }
 

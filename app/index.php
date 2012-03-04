@@ -90,7 +90,7 @@
 	});
 	
 	Flight::route('/items/new', function(){
-		$items = R::find('item', 'time_read = 0 ORDER BY pubDate ASC LIMIT 50');
+		$items = R::find('item', 'time_read = 0 ORDER BY pubDate ASC LIMIT 100');
 		$items_count = R::getCell('SELECT count(*) FROM item WHERE time_read = 0');
 		foreach($items as $item)
 		{
@@ -132,6 +132,21 @@
 		}
 	});
 	
+	Flight::route('/items/read/', function($guid){
+		$items_to_read = R::find('item',' guid IN (' . R::genSlots(Flight::request()->data['items_to_read']) . ') ', Flight::request()->data['items_to_read']);
+		
+		foreach($items_to_read as $item_to_read)
+		{
+			if($item_to_read->time_read == 0)
+			{
+				$item_to_read->time_read = time();
+			} else {
+				$item_to_read->time_read = 0;
+			}
+			R::store($item_to_read);			
+		}
+	});
+
 	Flight::route('/items/read/@guid', function($guid){
 		$item = R::findOne('item', 'guid = ?', array($guid));
 		if($item->time_read == 0)
