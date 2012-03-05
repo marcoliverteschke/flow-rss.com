@@ -107,6 +107,13 @@
 		}
 	});
 	
+	Flight::route('/items/new/count', function(){
+		$items_count = R::getCell('SELECT count(*) FROM item WHERE time_read = 0');
+		$title_prefix = ($items_count > 0 ? $items_count . ' items | ' : '');
+		Flight::render('blank', array('title_prefix' => $title_prefix));
+	});
+	
+	
 	Flight::route('/items/starred', function(){
 		$items = R::find('item', 'time_starred != 0 ORDER BY time_starred DESC');
 		foreach($items as $item)

@@ -113,7 +113,10 @@ function toggle_clacked()
 	if($(clacked).find('.body:visible').length == 0)
 	{
 		if(!$(clacked).hasClass('read'))
+		{
 			$.get('/items/read/' + $(clacked).attr('data-guid'), function(data){});
+			update_unread_count_in_title();
+		}
 		$.get('/items/fetch/' + $(clacked).attr('data-guid'), function(data){
 			$(clacked).addClass('open');
 			$(clacked).find('h1').after(data);
@@ -144,6 +147,7 @@ function read_all_visible_items()
 	});
 	$.post('/items/read/', {'items_to_read' : items_to_read}, function(data){
 		$('.item:not(.read)').addClass('read');
+		update_unread_count_in_title();
 	});
 }
 
@@ -151,4 +155,13 @@ function read_all_visible_items()
 function toggle_loading()
 {
 	$('#loading').toggle();
+}
+
+
+function update_unread_count_in_title()
+{
+	$.get('/items/new/count', function(data){
+		if(data.length > 0)
+			$('title').replaceWith(data);
+	});
 }
