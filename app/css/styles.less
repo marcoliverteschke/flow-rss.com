@@ -34,9 +34,9 @@ header {
 }
 
 #login-form {
-	margin: 10em auto 0 auto;
+	margin: 2em auto 0 auto;
 	padding: 1em;
-	width: 18em;
+	width: 16em;
 
 	input {
 		display: block;
@@ -44,7 +44,7 @@ header {
 		margin-bottom: .5em;
 		&[type="text"], &[type="password"] {
 			padding: 0;
-			width: 9em;
+			width: 8em;
 		}
 		
 		&[type="submit"] {
@@ -197,6 +197,10 @@ header {
 		padding-top: 0;
 	}
 
+	#login-form {
+		margin-top: 6em;
+	}
+
 	[role="main"] {
 		background-color: rgba(0, 0, 0, .8);
 		height: 100%;
@@ -250,6 +254,10 @@ header {
 }
 
 @media screen and (min-width: 1024px) {
+
+	#login-form {
+		margin-top: 12em;
+	}
 
 	[role="main"] {
 		background: none;
