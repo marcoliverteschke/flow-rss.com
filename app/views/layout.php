@@ -15,15 +15,17 @@
 		<link rel="apple-touch-icon" type="image/x-icon" href="/apple-touch-icon.png"/>
 	</head>  
 	<body>
-		<nav role="main">
-			<ul>
-				<li class="mobile-only"><a class="pictogram" href="javascript:read_all_visible_items();" title="Mark all items as read">%</a></li>
-				<li><a class="pictogram js-pjax" href="/items/new" title="New items">{</a></li>
-				<li><a class="pictogram js-pjax" href="/items/starred" title="Starred items">*</a></li>
-				<li><a class="pictogram js-pjax" href="/feeds" title="Feeds">^</a></li>
-<!--				<li><a class="pictogram js-pjax-modal" href="/feeds/subscribe" title="Add feed">+</a></li>-->
-			</ul>
-		</nav>
+		<?php if(Flight::get('authenticated')): ?>
+			<nav role="main">
+				<ul>
+					<li class="mobile-only"><a class="pictogram" href="javascript:read_all_visible_items();" title="Mark all items as read">%</a></li>
+					<li><a class="pictogram js-pjax" href="/items/new" title="New items">{</a></li>
+					<li><a class="pictogram js-pjax" href="/items/starred" title="Starred items">*</a></li>
+					<li><a class="pictogram js-pjax" href="/feeds" title="Feeds">^</a></li>
+	<!--				<li><a class="pictogram js-pjax-modal" href="/feeds/subscribe" title="Add feed">+</a></li>-->
+				</ul>
+			</nav>
+		<?php endif; ?>
 		<div class="clear"></div>
 		<div id="content"><?php echo $body_content ?></div>
 		<div id="loading"></div>

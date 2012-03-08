@@ -6,13 +6,34 @@
 
 	Flight::before('start', function(&$params, &$output){
 		lessc::ccompile('css/styles.less', 'css/styles.css');
+		$request = Flight::request();
+
+		if($request->url == '/login' && $request->method == 'POST')
+		{
+			if(isset($request->data['username']) && $request->data['username'] == 'marcoliver' && isset($request->data['password']) && md5($request->data['password']) == '4afa8481af06005ceb3801675c3cddac')
+			{
+				setcookie('flow_authenticated', 'true', time()+60*60*24*30, '/');
+				Flight::redirect('/');
+			}
+		}
+
+		if($request->url != '/login')
+		{
+			if(isset($request->cookies['flow_authenticated']) && $request->cookies['flow_authenticated'] == 'true')
+			{
+				Flight::set('authenticated', true);
+			} else {
+				Flight::set('authenticated', false);
+				Flight::redirect('/login');
+			}
+		}
 		
 		Flight::set('ajax', false);
-		$request = Flight::request();
 		if(isset($request->query['_pjax']) && $request->query['_pjax'])
 		{
 			Flight::set('ajax', true);
 		}
+		
 		
 		if($_SERVER['SERVER_ADDR'] == '87.106.88.22')
 		{
@@ -37,6 +58,11 @@
 	*/
 	Flight::route('/', function(){
 	    Flight::redirect('/items');
+	});
+
+	Flight::route('/login', function(){
+		Flight::render('login', null, 'body_content');
+		Flight::render('layout');
 	});
 	
 	Flight::route('/feeds', function(){

@@ -1,6 +1,10 @@
+
 @font-face {
 	font-family: 'Modern Pictograms';
-	src: url('/font/modern-pictograms/modernpics.otf'); } 
+	src: url('/font/modern-pictograms/modernpics.otf');
+} 
+
+@import "elements.less";
 
 body {
 	/*
@@ -21,6 +25,36 @@ body {
 
 header {
 	padding: 0 1.5em; /* 0 24px */
+}
+
+.form {
+	.drop-shadow();
+	.gradient(#eeeeee, #dddddd, #eeeeee);
+	.rounded(.5em);
+}
+
+#login-form {
+	margin: 10em auto 0 auto;
+	padding: 1em;
+	width: 18em;
+
+	input {
+		display: block;
+		font-size: 2em;
+		margin-bottom: .5em;
+		&[type="text"], &[type="password"] {
+			padding: 0;
+			width: 9em;
+		}
+		
+		&[type="submit"] {
+			float: right;
+		}
+		
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
 }
 
 #loading {
