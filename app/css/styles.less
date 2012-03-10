@@ -135,6 +135,24 @@ header {
 	}
 }
 
+.csshyphens {
+	.item, .feed {
+		h1 {
+			-webkit-hyphens: auto;
+			-moz-hyphens: auto;
+			hyphens: auto;
+		}
+	}
+}
+
+.no-csshyphens {
+	.item, .feed {
+		h1 {
+			width: 100%;
+			overflow: hidden;
+		}
+	}
+}
 
 [role="main"] {
 	left: 0;

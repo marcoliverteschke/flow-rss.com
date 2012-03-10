@@ -22,7 +22,8 @@
   		R::store($feed);		
 		$pie->set_feed_url($feed->link);
 		$pie->init();
-		$feed->title = $pie->get_title();
+		if(strlen($pie->get_title()) > 0)
+			$feed->title = $pie->get_title();
 		$pietems = $pie->get_items();
 		
 		foreach($pietems as $pietem)

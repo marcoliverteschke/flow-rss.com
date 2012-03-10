@@ -1,5 +1,5 @@
 <!doctype html>  
-<html lang="en">  
+<html class="no-js" lang="en">  
 	<head>  
 		<meta charset="utf-8">  
 		<title><?php if(isset($title_prefix)) { echo $title_prefix; } ?>Flow RSS</title>  
@@ -33,7 +33,7 @@
 			// Add a script element as a child of the body
 			function downloadJSAtOnload() {
 				var element = document.createElement("script");
-				element.src = "/min/?f=/js/jquery.js,/js/jquery.pjax.js,/js/scripts.js";
+				element.src = "/min/?f=/js/modernizr.js,/js/jquery.js,/js/jquery.pjax.js,/js/scripts.js";
 				document.body.appendChild(element);
 			}
 			// Check for browser support of event handling capability
