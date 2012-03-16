@@ -252,14 +252,19 @@ header {
 	header {
 		h1 {
 			margin: 1em auto;
-			width: 650px;	
+			width: 19.375em; /* 620 / 32 */
 		}
 	}
 	
 	.item, .feed {
 		h1, footer, .body {
 			margin: 0 auto;
-			width: 650px;
+		}
+		h1 {
+			width: 25.8333333333em; /* 620 / 24 */
+		}
+		footer, .body {
+			width: 38.75em; /* 620 / 16 */
 		}
 	}
 	
@@ -309,7 +314,7 @@ header {
 
 	header {
 		h1 {
-			width: 900px;	
+			width: 28.125em; /* 900 / 32 */
 
 			a {
 				display: none;
@@ -330,8 +335,11 @@ header {
 				display: block;
 			}
 		}
-		h1, footer, .body {
-			width: 900px;
+		h1 {
+			width: 37.5em; /* 900 / 24 */
+		}
+		footer, .body {
+			width: 56.25em; /* 900 / 16 */
 		}
 	}
 }
