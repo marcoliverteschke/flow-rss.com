@@ -101,7 +101,7 @@
 
 	Flight::route('/feeds/@id', function($id){
 		$feed = R::findOne('feed', 'id = ?', array($id));
-		$items = R::find('item', 'feed_id = ? ORDER BY pubDate DESC', array($id));
+		$items = R::find('item', 'feed_id = ? ORDER BY pubDate DESC LIMIT 100', array($id));
 		Flight::render('items', array('feed' => $feed, 'items' => $items), 'body_content');
 		if(Flight::get('ajax') == true)
 		{
