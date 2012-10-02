@@ -158,6 +158,26 @@ function toggle_loading()
 }
 
 
+function clack_next()
+{
+	var next_index = $('.item').index($('.item.open')) + 1;
+	if(next_index < $('.item').length)
+	{
+		clack($('.item')[next_index]);
+	}
+}
+
+
+function clack_previous()
+{
+	var previous_index = $('.item').index($('.item.open')) - 1;
+	if(previous_index >= 0)
+	{
+		clack($('.item')[previous_index]);
+	}
+}
+
+
 function update_unread_count_in_title()
 {
 	$.get('/items/new/count', function(data){
