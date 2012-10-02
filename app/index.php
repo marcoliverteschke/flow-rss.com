@@ -101,7 +101,7 @@
 
 	Flight::route('/feeds/@id', function($id){
 		$feed = R::findOne('feed', 'id = ?', array($id));
-		$items = R::find('item', 'feed_id = ? ORDER BY pubDate DESC LIMIT 200', array($id));
+		$items = R::find('item', 'feed_id = ? ORDER BY pubDate DESC LIMIT 100', array($id));
 		Flight::render('items', array('feed' => $feed, 'items' => $items), 'body_content');
 		if(Flight::get('ajax') == true)
 		{
@@ -123,7 +123,6 @@
 			// iterate over all items and prompt RedBean to load the parent feed
 			$item->feed;
 		}
-		Flight::render('items', array('items' => $items, 'theres_more' => ($items_count > count($items))), 'body_content');
 		$title_prefix = ($items_count > 0 ? $items_count . ' items | ' : '');
 		if(Flight::get('ajax') == true)
 		{
