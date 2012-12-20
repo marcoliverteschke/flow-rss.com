@@ -1,5 +1,6 @@
 var clacked = null;
 var items_to_read = null
+var feed_id = null;
 
 $(document).ready(function(){
 	
@@ -25,7 +26,7 @@ $(document).ready(function(){
 		{
 			if(e.keyCode == 106)
 			{
-				if(clacked == null)
+/*				if(clacked == null)
 				{
 					clack($('.item')[0]);
 				} else {
@@ -34,18 +35,20 @@ $(document).ready(function(){
 					{
 						clack($('.item')[next_index]);
 					}
-				}
+				}*/
+				clack_next();
 			}
 			if(e.keyCode == 107)
 			{
-				if(clacked != null)
+/*				if(clacked != null)
 				{
 					var previous_index = $('.item').index($('.item.open')) - 1;
 					if(previous_index >= 0)
 					{
 						clack($('.item')[previous_index]);
 					}
-				}
+				}*/
+				clack_previous();
 			}
 			if(e.keyCode == 65)
 			{
@@ -114,8 +117,9 @@ function toggle_clacked()
 	{
 		if(!$(clacked).hasClass('read'))
 		{
-			$.get('/items/read/' + $(clacked).attr('data-guid'), function(data){});
-			update_unread_count_in_title();
+			$.get('/items/read/' + $(clacked).attr('data-guid'), function(data){
+				update_unread_count_in_title();
+			});
 		}
 		$.get('/items/fetch/' + $(clacked).attr('data-guid'), function(data){
 			$(clacked).addClass('open');
@@ -180,7 +184,12 @@ function clack_previous()
 
 function update_unread_count_in_title()
 {
-	$.get('/items/new/count', function(data){
+	feed_id = -1;
+	if($('[data-fid]').length == 1)
+	{
+		feed_id = $('[data-fid]').attr('data-fid');
+	}
+	$.get('/items/new/count/' + feed_id, function(data){
 		if(data.length > 0)
 			$('title').replaceWith(data);
 	});

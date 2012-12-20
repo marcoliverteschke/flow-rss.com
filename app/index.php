@@ -102,12 +102,14 @@
 	Flight::route('/feeds/@id', function($id){
 		$feed = R::findOne('feed', 'id = ?', array($id));
 		$items = R::find('item', 'feed_id = ? ORDER BY pubDate DESC LIMIT 100', array($id));
+		$unread_items_count = R::getCell('SELECT count(*) FROM item WHERE time_read = 0 AND feed_id = ?', array($id));
+		$title_prefix = $unread_items_count . ' unread item' . ($unread_items_count == 1 ? '' : 's') . ' | ' . $feed->title . ' | ';
 		Flight::render('items', array('feed' => $feed, 'items' => $items), 'body_content');
 		if(Flight::get('ajax') == true)
 		{
-			Flight::render('blank');
+			Flight::render('blank', array('title_prefix' => $title_prefix));
 		} else {
-			Flight::render('layout');
+			Flight::render('layout', array('title_prefix' => $title_prefix));
 		}
 	});
 	
@@ -123,7 +125,8 @@
 			// iterate over all items and prompt RedBean to load the parent feed
 			$item->feed;
 		}
-		$title_prefix = ($items_count > 0 ? $items_count . ' items | ' : '');
+		$title_prefix = ($items_count > 0 ? $items_count . ' unread item' . ($items_count == 1 ? '' : 's') . ' | ' : '');
+		Flight::render('items', array('items' => $items), 'body_content');
 		if(Flight::get('ajax') == true)
 		{
 			Flight::render('blank', array('title_prefix' => $title_prefix));
@@ -132,9 +135,18 @@
 		}
 	});
 	
-	Flight::route('/items/new/count', function(){
-		$items_count = R::getCell('SELECT count(*) FROM item WHERE time_read = 0');
-		$title_prefix = ($items_count > 0 ? $items_count . ' items | ' : '');
+
+	Flight::route('/items/new/count/@id', function($id){
+		if(is_numeric($id) && (int)$id > 0)
+		{
+			$items_count = R::getCell('SELECT count(*) FROM item WHERE time_read = 0 AND feed_id = ?', array($id));
+			$title_prefix = ($items_count > 0 ? $items_count : 'no') . ' unread item' . ($items_count == 1 ? '' : 's') . ' | ';
+			$feed = R::findOne('feed', 'id = ?', array($id));
+			$title_prefix .= $feed->title . ' | ';
+		} else {
+			$items_count = R::getCell('SELECT count(*) FROM item WHERE time_read = 0');
+			$title_prefix = ($items_count > 0 ? $items_count : 'no') . ' unread item' . ($items_count == 1 ? '' : 's') . ' | ';
+		}
 		Flight::render('blank', array('title_prefix' => $title_prefix));
 	});
 	
