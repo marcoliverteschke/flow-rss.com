@@ -31,23 +31,26 @@
 		<div class="clear"></div>
 		<div id="content"><?php echo $body_content ?></div>
 		<div id="loading"></div>
-		<script src="/js/modernizr.js"></script>
-		<script src="/js/jquery.js"></script>
-		<script src="/js/jquery.pjax.js"></script>
-		<script src="/js/scripts.js"></script>
-		<script type="text/javascript">
-			// Add a script element as a child of the body
-			/*function downloadJSAtOnload() {
-				var element = document.createElement("script");
-				element.src = "/min/?f=/js/modernizr.js,/js/jquery.js,/js/jquery.pjax.js,/js/scripts.js";
-				document.body.appendChild(element);
-			}
-			// Check for browser support of event handling capability
-			if (window.addEventListener)
-				window.addEventListener("load", downloadJSAtOnload, false);
-			else if (window.attachEvent)
-				window.attachEvent("onload", downloadJSAtOnload);
-			else window.onload = downloadJSAtOnload;*/
-		</script>
+		<?php if(false): ?>
+			<script src="/js/modernizr.js"></script>
+			<script src="/js/jquery.js"></script>
+			<script src="/js/jquery.pjax.js"></script>
+			<script src="/js/scripts.js"></script>
+			<script type="text/javascript">
+				// Add a script element as a child of the body
+				/*function downloadJSAtOnload() {
+					var element = document.createElement("script");
+					element.src = "/min/?f=/js/modernizr.js,/js/jquery.js,/js/jquery.pjax.js,/js/scripts.js";
+					document.body.appendChild(element);
+				}
+				// Check for browser support of event handling capability
+				if (window.addEventListener)
+					window.addEventListener("load", downloadJSAtOnload, false);
+				else if (window.attachEvent)
+					window.attachEvent("onload", downloadJSAtOnload);
+				else window.onload = downloadJSAtOnload;*/
+			</script>
+		<?php endif; ?>
+		<script src="/min/?f=/js/modernizr.js,/js/jquery.js,/js/jquery.pjax.js,/js/scripts.js"></script>
 	</body>  
 </html>  

@@ -4,7 +4,7 @@ var feed_id = null;
 
 $(document).ready(function(){
 	
-	$('.body a').live('mouseover', function(e){
+	$('.body a').on('mouseover', function(e){
 		$(this).attr('target', '_blank');
 	});
 	
@@ -22,9 +22,10 @@ $(document).ready(function(){
 	});
 	
 	$(document).keypress(function(e){
+		console.log(e);
 		if($('.item').length > 0)
 		{
-			if(e.keyCode == 106)
+			if(e.charCode == 106)
 			{
 /*				if(clacked == null)
 				{
@@ -38,7 +39,7 @@ $(document).ready(function(){
 				}*/
 				clack_next();
 			}
-			if(e.keyCode == 107)
+			if(e.charCode == 107)
 			{
 /*				if(clacked != null)
 				{
@@ -50,26 +51,26 @@ $(document).ready(function(){
 				}*/
 				clack_previous();
 			}
-			if(e.keyCode == 65)
+			if(e.charCode == 65)
 			{
 				read_all_visible_items();
 			}
-			if(e.keyCode == 115 && clacked != null)
+			if(e.charCode == 115 && clacked != null)
 			{
 				star_item(clacked);
 			}
 		}
 	});
 	
-	$('article.item h1').live('click', function(){
+	$('article.item h1').on('click', function(){
 		clack_title(this);
 	});
 	
-	$('a[data-tool="star"]').live('click', function(){
+	$('a[data-tool="star"]').on('click', function(){
 		star_item($(this).parents('.item'));
 	});
 	
-	$('a[data-tool="unsubscribe"]').live('click', function(){
+	$('a[data-tool="unsubscribe"]').on('click', function(){
 		$.post('/feeds/unsubscribe', {'fid' : $(this).attr('data-fid')}, function(){
 			window.location = '/feeds';
 		});
