@@ -118,8 +118,8 @@
 	});
 	
 	Flight::route('/items/new', function(){
-		$items = R::find('item', 'time_read = 0 ORDER BY pubDate ASC LIMIT 100');
-		$items_count = R::getCell('SELECT count(*) FROM item WHERE time_read = 0');
+		$items = R::find('item', ' time_read = 0 AND (SELECT COUNT(*) FROM item i2 WHERE item.guid = i2.guid) = 1 ORDER BY pubDate ASC LIMIT 100 ');
+		$items_count = R::getCell('SELECT count(*) FROM item WHERE time_read = 0 AND (SELECT COUNT(*) FROM item i2 WHERE item.guid = i2.guid) = 1');
 		foreach($items as $item)
 		{
 			// iterate over all items and prompt RedBean to load the parent feed
