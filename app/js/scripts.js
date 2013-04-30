@@ -4,10 +4,6 @@ var feed_id = null;
 
 $(document).ready(function(){
 	
-	$('.body a').on('mouseover', function(e){
-		$(this).attr('target', '_blank');
-	});
-	
 	$('.js-pjax').pjax('#content', {
 		timeout: null,
 		beforeSend: function(jqXHR, settings){
@@ -125,6 +121,12 @@ function toggle_clacked()
 		$.get('/items/fetch/' + $(clacked).attr('data-guid'), function(data){
 			$(clacked).addClass('open');
 			$(clacked).find('h1').after(data);
+
+			$(clacked).find('.body').on('mouseover', 'a', function(e){
+				$(this).attr('target', '_blank');
+			});
+
+
 			$(clacked).find('.body').slideDown(function(){
 				if($('[role="main"]').offset().top == 0)
 				{
