@@ -19,7 +19,7 @@
 			<nav role="main">
 				<ul>
 					<li class="mobile-only"><a class="pictogram" href="javascript:read_all_visible_items();" title="Mark all items as read">%</a></li>
-					<li><a class="pictogram js-pjax" href="/items/new" title="New items">{</a></li>
+					<li><a class="pictogram js-pjax" href="/items/new?<?php print time(); ?>" title="New items">{</a></li>
 					<li><a class="pictogram js-pjax" href="/items/starred" title="Starred items">*</a></li>
 					<li><a class="pictogram js-pjax" href="/feeds" title="Feeds">^</a></li>
 					<li class="mobile-only"><a class="pictogram js-pjax" href="javascript:clack_previous();" title="Previous Item">-</a></li>
