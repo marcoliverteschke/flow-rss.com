@@ -18,7 +18,6 @@ $(document).ready(function(){
 	});
 	
 	$(document).keypress(function(e){
-		console.log(e);
 		if($('.item').length > 0)
 		{
 			if(e.charCode == 106)
@@ -124,6 +123,17 @@ function toggle_clacked()
 
 			$(clacked).find('.body').on('mouseover', 'a', function(e){
 				$(this).attr('target', '_blank');
+			});
+			
+			$(clacked).find('img').each(function(i, e){
+				if($(e).parent('figure').length == 0) {
+					$(e).wrap('<figure></figure>');
+					if(typeof $(e).attr('title') != "undefined" && $(e).attr('title').length > 0) {
+						$(e).parent('figure').append('<figcaption></figcaption>');
+						$(e).parent('figure').find('figcaption').text($(e).attr('title'));
+					}
+				}
+				console.log();
 			});
 
 
